@@ -9,7 +9,7 @@
    </div>
    
    <footer class="footer">
-     <p>Made with <i class="fa fa-heart"></i> from Morocco</p>
+     <p>Made with <i class="fa fa-heart"></i> by <a href="https://www.linkedin.com/in/salihbout/">Salih B</a> from Morocco</p>
    </footer>
   </div>
 </template>
