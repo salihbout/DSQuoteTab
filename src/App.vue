@@ -5,7 +5,7 @@
      <Time class="time"></Time>
    </header>
    <div class="quote">
-     <QuoteCard  />
+     <QuoteCard quote:quote />
    </div>
    
    <footer class="footer">
@@ -25,7 +25,9 @@ export default {
     QuoteCard: QuoteCard,
     Weather: Weather,
     Time: Time
-  }
+  },
+
+
 };
 </script>
 
@@ -60,7 +62,6 @@ html {
 }
 
 
-
 .weather {
   float: right;
   margin: 0;
@@ -74,7 +75,9 @@ html {
 }
 
 .quote {
-  padding-top: 30px;
+  padding-top: 40px;
+
+  
 }
 
 .footer {

@@ -2,15 +2,21 @@
     <div>
         <i class="fa fa-clock"></i>
         <div class="Time">
-            <p>16 : 20 pm</p>
-            <p>19 / 04 / 2018</p>
+            <p class="time-slot">{{time}}</p>
+            <p class="date-slot">{{date}}</p>
         </div>
     </div>
   
 </template>
 
 <script>
+var moment = require('moment');
+
 export default {
+    computed: {
+        time : function () {return moment().format("h:mm a"); },
+        date : function () {return moment().format("dddd, MMMM Do YYYY"); }
+    }
   
 }
 </script>
@@ -24,6 +30,16 @@ i {
 .Time {
     float: right;
 
+}
+
+.time-slot {
+    font-size: 25px;
+    padding-top: 2px;
+}
+
+.date-slot {
+    font-size: 15px;
+    font-weight: lighter
 }
 
 p {

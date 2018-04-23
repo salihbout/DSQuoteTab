@@ -1,16 +1,20 @@
 <template>
     <div class="quote-box">
         <div class="quote-text">
-            <i class="fa fa-quote-left"> </i><span id="text">Quote text goes here Quote text goes hereQuote text goes hereQuote text goes hereQuote text goes hereQuote text goes hereQuote text goes here </span>
+            <i class="fa fa-quote-left"> </i><span id="text">{{quoteText}}</span>
         </div>
         <div class="quote-author">
-            - <span id="author"> Salih BOUT</span>
+            - <span id="author"> {{quoteAuthor}}</span>
         </div>
         <div class="buttons">
+            <a class="button applaud"  title="applaud !" target="_blank">
+              {{quoteLikes}}
+            <i class="fa fa-heart"></i>
+            </a>
             <a class="button social"  title="Post this quote on twitter!" target="_blank">
             <i class="fa fa-facebook"></i>
             </a>
-            <a class="button social"  title="Tweet this quote!" target="_blank">
+            <a class="button  social"  title="Tweet this quote!" target="_blank">
             <i class="fa fa-twitter"></i>
             </a>
             <button class="button" id="new-quote">Get New Quote</button>
@@ -19,7 +23,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      quoteText:
+        "In the business people with expertise, experience and evidence will make more profitable decisions than people with instinct, intuition and imagination.",
+      quoteAuthor: "Amit Kalantri",
+      quoteLikes: 50
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -32,12 +45,11 @@ export default {};
   width: 550px;
   padding: 40px 50px;
   display: table;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
 }
 
 .quote-text {
   text-align: center;
-
   height: auto;
   clear: both;
   color: #333;
@@ -81,14 +93,27 @@ export default {};
 }
 
 .social {
-    float:left;
-        padding:0px;
-        padding-top:8px;
-        text-align:center;
-        font-size:1.2em;
-        margin-right:5px;
-        height:30px;
-        width:40px;
+  float: left;
+  padding: 0px;
+  padding-top: 8px;
+  text-align: center;
+  background-color: rgb(22, 161, 216);
+  font-size: 1.2em;
+  margin-right: 5px;
+  height: 30px;
+  width: 40px;
+}
+
+.applaud {
+  float: left;
+  padding: 0px;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 25px;
+  height: 30px;
+  width: 80px;
+   background-color: rgb(42, 34, 165);
 }
 
 .button:hover {
