@@ -7,10 +7,7 @@
             - <span id="author"> {{quoteAuthor}}</span>
         </div>
         <div class="buttons">
-            <a class="button applaud"  title="applaud !" target="_blank">
-              {{quoteLikes}}
-            <i class="fa fa-heart"></i>
-            </a>
+            
             <a class="button social"  title="Post this quote on twitter!" target="_blank">
             <i class="fa fa-facebook"></i>
             </a>

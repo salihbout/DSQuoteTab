@@ -5,7 +5,7 @@
      <Time class="time"></Time>
    </header>
    <div class="quote">
-     <QuoteCard quote:quote />
+     <QuoteCard />
    </div>
    
    <footer class="footer">
@@ -75,7 +75,7 @@ html {
 }
 
 .quote {
-  padding-top: 40px;
+  padding-top: 2%;
 
   
 }

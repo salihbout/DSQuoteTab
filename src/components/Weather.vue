@@ -15,31 +15,43 @@ export default {
     return {
       long: 0,
       lat: 0,
-      city: "undefined"
+      city: ""
     };
   },
   created: function() {
+    console.log('[created]')
     this.findLocation();
   },
   methods: {
     findLocation: () => {
-
+      console.log('[findLocation]')
+      let geoData = {
+                      long: 0,
+                      lat: 0,
+                      city: ""
+                    }
       if (!navigator.geolocation) {
-        this.city ="Geolocation is not supported by your browser";
+        
+        geoData.city ="Geolocation is not supported by your browser";
         return;
       }
 
       function success(position) {
-        this.lat = position.coords.latitude;
-        this.long = position.coords.longitude;
-        this.city = "City coords are here"
+        console.log('[success]', position.coords)
+        
+        geoData.lat = position.coords.latitude;
+        geoData.long = position.coords.longitude;
+        geoData.city = "City coords are here"
       }
 
       function error() {
-       this.city = "Unable to retrieve your location";
+        this.city = "Unable to retrieve your location";
       }
 
       navigator.geolocation.getCurrentPosition(success, error);
+      this.lat = geoData.lat
+      this.long = geoData.long
+      this.city = geoData.city
     }
   }
 };
