@@ -37,11 +37,13 @@ export default {
       }
 
       function success(position) {
-        console.log('[success]', position.coords)
+        
         
         geoData.lat = position.coords.latitude;
         geoData.long = position.coords.longitude;
         geoData.city = "City coords are here"
+
+        console.log('[success]', geoData)
       }
 
       function error() {
