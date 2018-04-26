@@ -1,49 +1,70 @@
 <template>
   <div>
-  <i class="fa fa-snowflake"></i>
+  <i v-bind:class="{icon} " ></i>{{icon}}
   <div class="templocation">
-      <p class="temperature">25 <span>°C</span></p>
-      <p class="location">{{long}} | {{lat}}</p>
-      <p class="location">{{city}}</p>
+      <p class="temperature">{{temp}} <span>°C</span></p>
+      <p class="location"> {{weather}} in <span> {{city}}</span></p>
   </div>
   </div>
 </template>
 
 <script>
+var axios = require("axios");
 export default {
   data() {
     return {
-      long: 0,
-      lat: 0,
-      city: ""
+      coordinates: {},
+      city: "",
+      temp:0,
+      weather : "",
+      icon: ""
+
     };
   },
-  created: function() {
-    console.log('[created]')
-    this.findLocation();
+  created() {
+    console.log("[created]");
+    //this.findLocation();
+
+    this.$getLocation().then(coordinates => {
+      this.coordinates = coordinates;
+      let lat = this.coordinates.lat;
+      let lng = this.coordinates.lng;
+      let url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=0eb7b7f0ab97f47f9b8249c7e0d127c7&units=metric`;
+      console.log(url);
+      axios
+        .get(url)
+        .then((response) =>{
+          console.log(response);
+          this.city = response.data.name
+          this.temp = response.data.main.temp
+          this.weather = response.data.weather[0].main
+          this.icon = `owf owf-${response.data.cod}`
+          console.log(this.icon);
+        })
+        .catch((error) =>{
+          console.log(error);
+        });
+    });
   },
+
   methods: {
-    findLocation: () => {
-      console.log('[findLocation]')
+    findLocation() {
+      console.log("[findLocation]");
       let geoData = {
-                      long: 0,
-                      lat: 0,
-                      city: ""
-                    }
+        long: 0,
+        lat: 0,
+        city: ""
+      };
       if (!navigator.geolocation) {
-        
-        geoData.city ="Geolocation is not supported by your browser";
+        geoData.city = "Geolocation is not supported by your browser";
         return;
       }
 
       function success(position) {
-        
-        
-        geoData.lat = position.coords.latitude;
+        console.log("[success]", geoData);
+        geoData.lat = 1;
         geoData.long = position.coords.longitude;
-        geoData.city = "City coords are here"
-
-        console.log('[success]', geoData)
+        geoData.city = "City coords are here";
       }
 
       function error() {
@@ -51,9 +72,7 @@ export default {
       }
 
       navigator.geolocation.getCurrentPosition(success, error);
-      this.lat = geoData.lat
-      this.long = geoData.long
-      this.city = geoData.city
+      console.log("[out]", geoData);
     }
   }
 };
@@ -80,6 +99,10 @@ i {
 
 .location {
   font-weight: lighter;
+}
+
+.location span {
+  font-weight: bold
 }
 
 p {

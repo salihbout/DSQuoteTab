@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import 'font-awesome/css/font-awesome.css';
 
+import VueGeolocation from 'vue-browser-geolocation';
+Vue.use(VueGeolocation);
 
 Vue.config.productionTip = false
 
