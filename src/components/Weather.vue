@@ -1,6 +1,6 @@
 <template>
   <div>
-  <i v-bind:class="{icon} " ></i>{{icon}}
+  <i v-bind:class="{icon}" ></i>
   <div class="templocation">
       <p class="temperature">{{temp}} <span>°C</span></p>
       <p class="location"> {{weather}} in <span> {{city}}</span></p>
