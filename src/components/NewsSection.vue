@@ -30,13 +30,15 @@ export default {
           icon:
             "https://besticon-demo.herokuapp.com/icon?url=news.ycombinator.com&size=80..120..200",
           source: "hacker-news",
-          title: "Hacker News"
+          title: "Hacker News",
+          url: "https://news.ycombinator.com/"
         },
         {
           icon:
             "https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/icons/apple-touch-icon-120x120.png?v=1524750009",
           source: "the-next-web",
-          title: "The Next Web"
+          title: "The Next Web",
+          url: "https://thenextweb.com/"
         }
       ]
     };

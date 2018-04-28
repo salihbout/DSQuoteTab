@@ -3,11 +3,11 @@
         <div class="news-header">
             <img :src="data.icon" alt="">
             <h3>{{data.title}}</h3>
-            <a :href="data.url"><i class="fas fa-external-link-alt"></i></a>
+            <a :href="data.url" target="_blank"><i class="fas fa-external-link-alt"></i></a>
         </div>
         <div class="news-list">
             <ul>
-                <li v-for="item in news" :key="item.id"><span>{{item.id}}</span><a :href="item.url">{{item.title}}</a></li>
+                <li v-for="item in news" :key="item.id"><span>{{item.id}}</span><a :href="item.url" target="_blank">{{item.title}}</a></li>
             </ul>
         </div>
     </div>
