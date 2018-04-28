@@ -7,7 +7,11 @@
    <div class="quote">
      <QuoteCard />
    </div>
-  <news-section />
+
+   <div class="news">
+    <news-section />
+  </div>
+
    
    <footer class="footer">
      <p>Made with <i class="fa fa-heart"></i> by <a href="https://www.linkedin.com/in/salihbout/">Salih B</a> from Morocco</p>
@@ -27,8 +31,8 @@ export default {
     QuoteCard,
     Weather,
     Time,
-    NewsSection,
-  },
+    NewsSection
+  }
 };
 </script>
 
@@ -39,7 +43,12 @@ html {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   /* The image used */
-  background:linear-gradient(0deg,rgba(25, 0, 255, 0.3),rgba(50, 6, 246, 0.452)),url(https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?cs=srgb&dl=chart-close-up-data-590022.jpg);
+  background: linear-gradient(
+      0deg,
+      rgba(25, 0, 255, 0.3),
+      rgba(50, 6, 246, 0.452)
+    ),
+    url(https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?cs=srgb&dl=chart-close-up-data-590022.jpg);
 
   /* Full height */
   height: 100%;
@@ -52,7 +61,6 @@ html {
   background-size: cover;
 }
 
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -60,7 +68,6 @@ html {
   color: #fff;
   font-weight: 400;
 }
-
 
 .weather {
   float: right;
@@ -75,16 +82,19 @@ html {
 }
 
 .quote {
-  padding-top: 2%;
+  padding-top: 0.5%;
 }
 
-
+.news{
+  margin-top: 40px;
+}
 
 .footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
+  position: fixed;
+  bottom: 15px;
+  height: 20px;
   text-align: center;
+  font-size: 12px;
+  width: 100%
 }
 </style>

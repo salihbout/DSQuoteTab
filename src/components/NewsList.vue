@@ -3,10 +3,11 @@
         <div class="news-header">
             <img :src="data.icon" alt="">
             <h3>{{data.title}}</h3>
+            <a :href="data.url"><i class="fas fa-external-link-alt"></i></a>
         </div>
         <div class="news-list">
             <ul>
-                <li v-for="item in news" :key="item.id"><a :href="item.url">{{item.title}}</a></li>
+                <li v-for="item in news" :key="item.id"><span>{{item.id}}</span><a :href="item.url">{{item.title}}</a></li>
             </ul>
         </div>
     </div>
@@ -30,7 +31,6 @@ export default {
 .list-box {
   border-radius: 3px;
   width: 30%;
-
   background-color: rgb(255, 255, 255);
   float: left;
   margin-right: 20px;
@@ -47,16 +47,28 @@ export default {
   color: #3a3434;
 }
 
+.news-header a {
+  padding-top: 34px;
+  padding-left: 55%;
+  color: #122488;
+}
+
+ul {
+    width: 100%;
+    margin: 0;
+    padding: 0
+}
+
 li {
-  padding: 10px;
-  font-size: 16px;
+  padding: 15px;
+  font-size: 14px;
   list-style: none;
+  border-bottom: rgba(39, 39, 39, 0.198) solid 1px;
 }
 
 li a {
-      color: rebeccapurple;
+      color: rgb(63, 60, 66);
       text-decoration: none;
-      font-weight: medium
 }
 
 .news-header img {
