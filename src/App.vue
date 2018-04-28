@@ -7,11 +7,7 @@
    <div class="quote">
      <QuoteCard />
    </div>
-   <div class="news-section">
-     <news-list/>
-     <news-list/>
-     <news-list/>
-   </div>
+  <news-section />
    
    <footer class="footer">
      <p>Made with <i class="fa fa-heart"></i> by <a href="https://www.linkedin.com/in/salihbout/">Salih B</a> from Morocco</p>
@@ -23,7 +19,7 @@
 import QuoteCard from "./components/QuoteCard";
 import Time from "./components/Time";
 import Weather from "./components/Weather";
-import NewsList from "./components/NewsList";
+import NewsSection from "./components/NewsSection";
 
 export default {
   name: "App",
@@ -31,10 +27,8 @@ export default {
     QuoteCard,
     Weather,
     Time,
-    NewsList,
+    NewsSection,
   },
-
-
 };
 </script>
 
@@ -84,18 +78,10 @@ html {
   padding-top: 2%;
 }
 
-.news-section{
-    display: flex;
-    flex-wrap: wrap; /* Optional. only if you want the items to wrap */
-    justify-content: center; /* For horizontal alignment */
-    align-items: center; /* For vertical alignment */
-    margin-top: 45px;
-  
-  
-}
+
 
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 60px;
