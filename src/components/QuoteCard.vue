@@ -11,7 +11,11 @@
             <a class="button social"  title="Post this quote on twitter!" target="_blank">
             <i class="fa fa-facebook"></i>
             </a>
-            <a class="button  social"  title="Tweet this quote!" target="_blank">
+            <a class="button  social"
+              title="Tweet this quote!" 
+              target="_blank"
+              :href="twitterURL" 
+              >
             <i class="fa fa-twitter"></i>
             </a>
             <button v-on:click="selectQuote"  class="button" id="new-quote">Get New Quote</button>
@@ -26,7 +30,8 @@ export default {
   data() {
     return {
       index:0,
-      quotes: []
+      quotes: [],
+      twitterURL :""
     };
   },
 
@@ -42,7 +47,7 @@ export default {
           console.log('index', this.index);
           console.log('QUOTE', quotes);
           this.quotes = quotes
-          
+          this.updateSocialURL()
         })
         .catch((error) =>{
           console.log(error);
@@ -59,6 +64,11 @@ export default {
            this.index = newIdx
          }
 
+        this.updateSocialURL()
+    },
+    updateSocialURL: function(){
+      this.twitterURL = `http://twitter.com/share?text='${this.quotes[this.index]['quote-text']} - ${this.quotes[this.index]['quote-author']}'%0a&hashtags="data,business,analytics,machine learning, deep learning'` 
+      console.log(this.twitterURL)
     }
 
     }

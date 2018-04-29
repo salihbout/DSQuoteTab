@@ -7,7 +7,7 @@
         </div>
         <div class="news-list">
             <ul>
-                <li v-for="item in news" :key="item.id"><span>{{item.id}}</span><a :href="item.url" target="_blank">{{item.title}}</a></li>
+                <li v-for="item in news" :key="item.id"><span>{{item.id}}</span><a :href="item.url" target="_blank">{{shrink(item.title, 80)}}</a></li>
             </ul>
         </div>
     </div>
@@ -23,6 +23,16 @@ export default {
   },
   created() {
     this.fetchNews(this.data.source);
+  }, 
+  methods:{
+    shrink: function(str, max){
+      if(str.length > max){
+        return str.substring(0,max) + '...'
+      }else{
+        return str
+      }
+      
+    }
   }
 };
 </script>
