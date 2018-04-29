@@ -32,7 +32,8 @@ export default {
     Weather,
     Time,
     NewsSection
-  }
+  },
+  
 };
 </script>
 

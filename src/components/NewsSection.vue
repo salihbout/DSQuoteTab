@@ -52,7 +52,7 @@ export default {
   flex-wrap: wrap; /* Optional. only if you want the items to wrap */
   justify-content: center; /* For horizontal alignment */
   align-items: center; /* For vertical alignment */
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .news-section-title {

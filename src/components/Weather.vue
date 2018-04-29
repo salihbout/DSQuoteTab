@@ -22,24 +22,20 @@ export default {
     };
   },
   created() {
-    console.log("[created]");
-    //this.findLocation();
+
 
     this.$getLocation().then(coordinates => {
       this.coordinates = coordinates;
       let lat = this.coordinates.lat;
       let lng = this.coordinates.lng;
       let url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&APPID=0eb7b7f0ab97f47f9b8249c7e0d127c7&units=metric`;
-      console.log(url);
       axios
         .get(url)
         .then((response) =>{
-          console.log(response);
           this.city = response.data.name
           this.temp = response.data.main.temp
           this.weather = response.data.weather[0].main
           this.icon = `owf owf-${response.data.cod}`
-          console.log(this.icon);
         })
         .catch((error) =>{
           console.log(error);
@@ -49,7 +45,6 @@ export default {
 
   methods: {
     findLocation() {
-      console.log("[findLocation]");
       let geoData = {
         long: 0,
         lat: 0,
@@ -61,7 +56,6 @@ export default {
       }
 
       function success(position) {
-        console.log("[success]", geoData);
         geoData.lat = 1;
         geoData.long = position.coords.longitude;
         geoData.city = "City coords are here";
@@ -72,7 +66,6 @@ export default {
       }
 
       navigator.geolocation.getCurrentPosition(success, error);
-      console.log("[out]", geoData);
     }
   }
 };

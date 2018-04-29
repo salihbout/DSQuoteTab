@@ -32,8 +32,8 @@ export default {
   border-radius: 3px;
   width: 30%;
   background-color: rgb(255, 255, 255);
-  float: left;
   margin-right: 20px;
+  
 }
 
 .news-header {

@@ -1,10 +1,10 @@
 <template>
     <div class="quote-box">
         <div class="quote-text">
-            <i class="fa fa-quote-left"> </i><span id="text">{{quoteText}}</span>
+            <i  class="fa fa-quote-left"> </i><span id="text">{{quotes[index]['quote-text']}}</span>
         </div>
         <div class="quote-author">
-            - <span id="author"> {{quoteAuthor}}</span>
+            - <span id="author"> {{quotes[index]['quote-author']}} </span>
         </div>
         <div class="buttons">
             
@@ -14,21 +14,54 @@
             <a class="button  social"  title="Tweet this quote!" target="_blank">
             <i class="fa fa-twitter"></i>
             </a>
-            <button class="button" id="new-quote">Get New Quote</button>
+            <button v-on:click="selectQuote"  class="button" id="new-quote">Get New Quote</button>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import _ from 'lodash'
 export default {
   data() {
     return {
-      quoteText:
-        "In the business people with expertise, experience and evidence will make more profitable decisions than people with instinct, intuition and imagination.",
-      quoteAuthor: "Amit Kalantri",
-      quoteLikes: 50
+      index:0,
+      quotes: []
     };
-  }
+  },
+
+  created() {
+    
+    axios
+        .get('https://dsquotestab.firebaseio.com/quotes.json')
+        .then((response) =>{
+          
+          let quotes = _.values(response.data);
+          console.log('quotes', quotes.length);
+          this.index = Math.floor(Math.random() * quotes.length)
+          console.log('index', this.index);
+          console.log('QUOTE', quotes);
+          this.quotes = quotes
+          
+        })
+        .catch((error) =>{
+          console.log(error);
+        });
+  
+  },
+  methods:{
+    selectQuote :function(){
+      console.log("Update index");
+       let newIdx = Math.floor(Math.random() * this.quotes.length)
+       if( newIdx == this.index) {
+         this.index += 1
+         }else{
+           this.index = newIdx
+         }
+
+    }
+
+    }
 };
 </script>
 
@@ -110,7 +143,7 @@ export default {
   margin-right: 25px;
   height: 30px;
   width: 80px;
-   background-color: rgb(42, 34, 165);
+  background-color: rgb(42, 34, 165);
 }
 
 .button:hover {
