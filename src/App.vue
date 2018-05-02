@@ -1,5 +1,8 @@
 <template>
   <div id="app" class="wrapper">
+    <div>
+      
+    </div>
    <header>
      <weather class="weather"></weather>
      <Time class="time"></Time>

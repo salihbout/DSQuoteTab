@@ -3,7 +3,8 @@ import axios from 'axios'
 const fetch = {
     data(){
         return{
-            news : []  
+            news : [],
+            loading: true  
         }
         
     },   
@@ -16,6 +17,7 @@ const fetch = {
                 console.log("[url]",  url);
                 console.log("[NEWS]",  response.data);
                this.news = response.data.articles
+               this.loading = false;
               })
               .catch(error => {
                 console.log("[NEWS]", error);

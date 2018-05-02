@@ -1,5 +1,7 @@
 <template>
-    <div class="quote-box">
+  <div>
+    <loader v-if="!loading"/>
+    <div class="quote-box" v-if="!loading" >
         <div class="quote-text">
             <i  class="fa fa-quote-left"> </i><span id="text">{{quotes[index]['quote-text']}}</span>
         </div>
@@ -21,57 +23,65 @@
             <button v-on:click="selectQuote"  class="button" id="new-quote">Get New Quote</button>
         </div>
     </div>
+  </div>
+    
 </template>
 
 <script>
-import axios from 'axios'
-import _ from 'lodash'
+import axios from "axios";
+import _ from "lodash";
+import loader from './loader'
 export default {
+  components:{
+    loader,
+  },
   data() {
     return {
-      index:0,
+      index: 0,
       quotes: [],
-      twitterURL :""
+      twitterURL: "",
+      loading: true
     };
   },
 
   created() {
-    
     axios
-        .get('https://dsquotestab.firebaseio.com/quotes.json')
-        .then((response) =>{
-          
-          let quotes = _.values(response.data);
-          console.log('quotes', quotes.length);
-          this.index = Math.floor(Math.random() * quotes.length)
-          console.log('index', this.index);
-          console.log('QUOTE', quotes);
-          this.quotes = quotes
-          this.updateSocialURL()
-        })
-        .catch((error) =>{
-          console.log(error);
-        });
-  
+      .get("https://dsquotestab.firebaseio.com/quotes.json")
+      .then(response => {
+        let quotes = _.values(response.data);
+        console.log("quotes", quotes.length);
+        this.index = Math.floor(Math.random() * quotes.length);
+        console.log("index", this.index);
+        console.log("QUOTE", quotes);
+        this.quotes = quotes;
+        this.updateSocialURL();
+        this.loading = false;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
-  methods:{
-    selectQuote :function(){
+  methods: {
+    selectQuote: function() {
       console.log("Update index");
-       let newIdx = Math.floor(Math.random() * this.quotes.length)
-       if( newIdx == this.index) {
-         this.index += 1
-         }else{
-           this.index = newIdx
-         }
+      let newIdx = Math.floor(Math.random() * this.quotes.length);
+      if (newIdx == this.index) {
+        this.index += 1;
+      } else {
+        this.index = newIdx;
+      }
 
-        this.updateSocialURL()
+      this.updateSocialURL();
     },
-    updateSocialURL: function(){
-      this.twitterURL = `http://twitter.com/share?text='${this.quotes[this.index]['quote-text']} - ${this.quotes[this.index]['quote-author']}'%0a&hashtags="data,business,analytics,machine learning, deep learning'` 
-      console.log(this.twitterURL)
+    updateSocialURL: function() {
+      this.twitterURL = `http://twitter.com/share?text='${
+        this.quotes[this.index]["quote-text"]
+      } - ${
+        this.quotes[this.index]["quote-author"]
+      }'%0a&hashtags="data,business,analytics,machine learning, deep learning'`;
+      console.log(this.twitterURL);
     }
-
-    }
+  }
 };
 </script>
 
