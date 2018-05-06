@@ -1,7 +1,9 @@
 <template>
     <div>
-        <p class="news-section-title">What's up Internet ?</p>
-        <div class="news-section">
+      <p class="news-section-title">What's up Internet ?</p>
+        <loader v-if="loading"/>
+        
+        <div v-show="!loading" class="news-section">
             <news-list v-for="list in sources" v-bind:key="list.id" :data="list" />
         </div>
     </div>
@@ -11,13 +13,15 @@
 
 <script>
 import NewsList from "./NewsList";
+import loader from "./loader"
 import axios from "axios";
 export default {
   components: {
-    NewsList
+    NewsList,loader
   },
   data() {
     return {
+      loading: false,
       sources: [
         {
           icon:
@@ -42,7 +46,17 @@ export default {
         }
       ]
     };
+  },
+  created(){
+    this.loading = true,
+    this.showNews()
+  },
+  methods:{
+    showNews() {
+      setTimeout(() => { this.loading = false; }, 2000);
+    }
   }
+
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <loader v-if="!loading"/>
+    <loader v-show="loading"/>
     <div class="quote-box" v-if="!loading" >
         <div class="quote-text">
             <i  class="fa fa-quote-left"> </i><span id="text">{{quotes[index]['quote-text']}}</span>
@@ -93,6 +93,7 @@ export default {
   position: relative;
   margin: 8% auto auto auto;
   width: 550px;
+  height:100%;
   padding: 40px 50px;
   display: table;
   background-color: rgb(255, 255, 255);
